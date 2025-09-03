@@ -1,0 +1,82 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/server.js",
+      "use": "@vercel/node",
+      "config": {
+        "memory": 1024,
+        "maxDuration": 60
+      }
+    },
+    {
+      "src": "index.js",
+      "use": "@vercel/node",
+      "config": {
+        "memory": 1024,
+        "maxDuration": 10
+      }
+    },
+    {
+      "src": "frontend/build/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/health",
+      "dest": "backend/server.js",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/server.js"
+    },
+    {
+      "src": "/frontend-health",
+      "dest": "index.js",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/",
+      "dest": "/frontend/build/index.html"
+    },
+    {
+      "src": "/index.html",
+      "dest": "/frontend/build/index.html"
+    },
+    {
+      "src": "/dashboard.html",
+      "dest": "/frontend/build/dashboard.html"
+    },
+    {
+      "src": "/dashboard",
+      "dest": "/frontend/build/pages/dashboard.html"
+    },
+    {
+      "src": "/usuarios",
+      "dest": "/frontend/build/pages/usuarios.html"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*\\.(?:css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
+      "dest": "/frontend/build/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "index.js"
+    },
+    {
+      "src": "/index.html",
+      "dest": "/",
+      "status": 301
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "PORT": "3000",
+    "VERCEL": "true"
+  }
+}

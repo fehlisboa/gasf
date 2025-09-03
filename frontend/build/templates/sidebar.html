@@ -1,0 +1,31 @@
+<!-- sidebar.html (corrigido) -->
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+</head>
+<aside class="sidebar closed" id="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-title-wrapper">
+            <!-- Apenas um elemento de título será exibido por vez -->
+            <span class="sidebar-page-title" id="sidebarPageTitle">Dashboard</span>
+        </div>
+        <div class="sidebar-toggle-wrapper">
+            <button class="sidebar-toggle" id="sidebarToggle" title="Abrir/fechar menu" aria-label="Abrir/Fechar menu">
+                <i class="fa-solid fa-rectangle-list"></i>
+            </button>
+        </div>
+    </div>
+    <nav class="sidebar-menu">
+        <ul>
+            <li><a href="/dashboard" class="sidebar-link" aria-label="Dashboard"><i class="fas fa-tachometer-alt"></i><span class="sidebar-text">Dashboard</span></a></li>
+            <li><a href="/usuarios" class="sidebar-link" aria-label="Usuários"><i class="fa-solid fa-users-gear"></i></i><span class="sidebar-text">Usuários</span></a></li>
+            <li><a href="/metricas.html" class="sidebar-link" aria-label="Métricas"><i class="fa-solid fa-file-lines"></i><span class="sidebar-text">Métricas</span></a></li>
+       </ul>
+    </nav>
+    <div class="sidebar-logout">
+        <a href="#" class="sidebar-link" aria-label="Sair" id="logoutButton" title="Sair do sistema">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="sidebar-text">Sair</span>
+        </a>
+    </div>
+</aside>

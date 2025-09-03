@@ -1,0 +1,1073 @@
+/* frontend/src/styles/kanban.css */
+
+.kanban-page-title {
+    font-size: 2rem; /* Ajustar tamanho conforme design do dashboard.html */
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+@media (max-width: 900px) {
+    .kanban-page-title {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+/* Seção de Resumo */
+.kanban-summary {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding-left: 32px;
+    padding-right: 32px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+    .kanban-summary {
+        padding-left: 10px;
+        padding-right: 10px;
+        gap: 10px;
+    }
+}
+
+.summary-card {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.summary-card h3 {
+    margin-top: 0;
+    font-size: 0.9rem;
+    color: #555;
+    text-transform: uppercase;
+}
+
+.summary-card p {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0;
+}
+
+/* Cores específicas para os contadores (bordas superiores como no dashboard) */
+.kanban-summary .summary-card:nth-child(1) { border-top: 4px solid orange; }
+.kanban-summary .summary-card:nth-child(2) { border-top: 4px solid #3B82F6; } /* Azul */
+.kanban-summary .summary-card:nth-child(3) { border-top: 4px solid #10B981; } /* Verde */
+
+
+/* Seção Todas as Ações */
+.all-actions {
+    background-color: #fff;
+    padding: 20px 32px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    box-sizing: border-box;
+}
+
+.actions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.actions-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.btn-primary {
+    background-color: #007bff; /* Azul primário */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-primary .fas {
+    margin-right: 5px;
+}
+
+.actions-filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Para responsividade */
+}
+
+.actions-filters select,
+.actions-filters input[type="text"] {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    flex-grow: 1; /* Para ocupar espaço disponível */
+}
+
+.actions-filters input[type="text"] {
+    min-width: 200px; /* Largura mínima para o campo de pesquisa */
+}
+
+.actions-table-container {
+    max-height: 400px; /* Altura para mostrar aproximadamente 8 linhas */
+    overflow-y: auto; /* Adiciona barra de rolagem vertical */
+    overflow-x: auto; /* Para tabelas largas em telas pequenas */
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+/* Estilo para a barra de rolagem (compatível com navegadores modernos) */
+.actions-table-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.actions-table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.actions-table-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.actions-table-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+}
+
+/* Estilos para tags de status (exemplo) */
+.status-tag {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #fff;
+}
+.status-afazer { background-color: orange; }
+.status-emandamento { background-color: #3B82F6; }
+.status-concluido { background-color: #10B981; }
+
+/* Estilos para as tags de prioridade na tabela */
+.prioridade-tag {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    min-width: 70px;
+}
+.prioridade-alta { background-color: #EF4444; /* Vermelho */ }
+.prioridade-media { background-color: #F59E0B; /* Ambar */ }
+.prioridade-baixa { background-color: #3B82F6; /* Azul */ }
+
+/* Botões de ação na tabela */
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+    padding: 5px;
+}
+.btn-icon:hover { color: #0056b3; }
+.btn-icon.btn-delete { color: #dc3545; }
+.btn-icon.btn-delete:hover { color: #a71d2a; }
+
+
+/* Seção Kanban Board View */
+.kanban-board-view {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 0 32px 32px 32px; /* Espaço nas laterais e embaixo */
+    box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+    .kanban-board-view {
+        padding: 0 10px 20px 10px;
+        gap: 10px;
+    }
+}
+
+.kanban-column {
+    flex: 1;
+    background-color: #fff7e6;
+    padding: 20px 14px 20px 14px; /* Mais espaçamento interno nas laterais e embaixo */
+    border-radius: 8px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px; /* Espaço extra na parte de baixo de cada coluna */
+}
+
+#column-todo.kanban-column {
+    background-color: #fff7e6; /* Laranja claro */
+}
+
+#column-inprogress.kanban-column {
+    background-color: #e6f0ff; /* Azul claro */
+}
+
+#column-done.kanban-column {
+    background-color: #e6fff2; /* Verde claro */
+}
+
+.column-header {
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ccc;
+    text-align: center; /* Centraliza o título */
+}
+
+.column-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center; /* Garante centralização do texto */
+}
+
+/* Cores específicas para as bordas superiores dos cabeçalhos das colunas Kanban */
+#column-todo .column-header {
+    border-top-color: orange;
+}
+
+#column-inprogress .column-header {
+    border-top-color: #3B82F6; /* Azul */
+}
+
+#column-done .column-header {
+    border-top-color: #10B981; /* Verde */
+}
+
+.kanban-cards-container {
+    /* Modificado para adicionar barra de rolagem limitando a 4 cards visíveis */
+    height: 480px; /* Altura aproximada para mostrar 4 cards (cada card tem ~110px de altura + 10px de margem) */
+    overflow-y: auto; /* Adiciona barra de rolagem vertical */
+    padding-right: 5px; /* Espaço para a barra de rolagem */
+    flex-grow: 1; /* Ocupa o espaço disponível na coluna */
+}
+
+/* Estilizar a barra de rolagem dos containers de cards */
+.kanban-cards-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.kanban-cards-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.kanban-cards-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.kanban-cards-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Estilos para os Cards Kanban (Etapa 2 do README2.md) */
+.kanban-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    cursor: default; /* Será 'grab' na etapa de drag-and-drop */
+}
+
+.kanban-card h4 {
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.kanban-card .card-responsaveis {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.kanban-card .card-footer {
+    display: flex;
+    justify-content: space-between; /* Ajustado para prioridade e talvez outros itens */
+    align-items: center;
+    margin-top: 10px;
+}
+
+.kanban-card .card-prioridade {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 10px;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.card-prioridade.alta { background-color: #EF4444; /* Vermelho */ }
+.card-prioridade.media { background-color: #F59E0B; /* Ambar */ }
+.card-prioridade.baixa { background-color: #3B82F6; /* Azul */ }
+
+/* Estilos para o Modal (Etapa 2 do README2.md) */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 1000; /* Acima de outros conteúdos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); /* Fundo escurecido */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 8% auto; /* Um pouco menos de margem no topo */
+    padding: 25px 30px; /* Aumentar padding */
+    border: none; /* Remover borda padrão */
+    width: 85%;
+    max-width: 650px; /* Um pouco maior para formulários */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 25px; /* Mais espaço após o header */
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.6rem; /* Título um pouco maior */
+    font-weight: 600; /* Mais peso no título */
+    color: #333;
+}
+
+.close-btn {
+    color: #aaa;
+    background: none;
+    border: none;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.modal-form .form-group {
+    margin-bottom: 20px; /* Mais espaço entre os grupos de formulário */
+}
+
+.modal-form label {
+    display: block;
+    margin-bottom: 8px; /* Mais espaço entre label e input */
+    font-weight: 500; /* Peso médio para labels */
+    font-size: 0.9rem; /* Tamanho de fonte para labels */
+    color: #4a5568; /* Cor consistente com o modal de visualização */
+}
+
+.modal-form input[type="text"],
+.modal-form textarea,
+.modal-form select,
+.modal-form input[type="date"] {
+    width: 100%;
+    padding: 12px 15px; /* Mais padding interno */
+    border: 1px solid #cbd5e0; /* Borda mais suave */
+    border-radius: 6px; /* Bordas dos inputs mais arredondadas */
+    box-sizing: border-box;
+    font-size: 0.95rem;
+    color: #2d3748;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.modal-form input[type="text"]:focus,
+.modal-form textarea:focus,
+.modal-form select:focus,
+.modal-form input[type="date"]:focus {
+    border-color: #4299e1; /* Azul no foco, como Bootstrap */
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25); /* Sombra sutil no foco */
+    outline: none;
+}
+
+.modal-form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.modal-form .form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.modal-form .form-row .form-group {
+    flex: 1;
+}
+
+.modal-form .required {
+    color: red;
+    margin-left: 2px;
+}
+
+.modal-form .form-actions {
+    margin-top: 30px; /* Mais espaço antes dos botões de ação */
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Estilo para botão secundário, se não existir um global */
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Estilos para Drag and Drop (Etapa 3 do README3.md) */
+.kanban-card.dragging {
+    opacity: 0.5;
+    border: 2px dashed #007bff;
+    transform: scale(1.05);
+}
+
+.kanban-cards-container.drag-over {
+    background-color: #ddeeff; /* Um azul claro para indicar área de drop */
+    border: 2px dashed #007bff;
+}
+
+/* Ajustar o cursor para indicar que os cards são arrastáveis */
+.kanban-card[draggable="true"] {
+    cursor: grab;
+}
+
+.kanban-card[draggable="true"]:active {
+    cursor: grabbing;
+    opacity: 0.5;
+}
+
+/* Estilos para Seção Eixos (Adicionado) */
+.eixos-section {
+    background-color: #fff;
+    padding: 20px 32px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    box-sizing: border-box;
+}
+
+.eixos-section .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.eixos-section .section-header .kanban-page-title {
+    margin: 0; /* Reset margin for h1 inside this specific header */
+}
+
+.list-container {
+    margin-top: 15px;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-item span {
+    flex-grow: 1;
+    color: #333;
+}
+
+.list-item .item-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Garante que o card branco se destaque se o fundo do main for alterado */
+.card-white {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* Estilos para Checklist nos Modais */
+.checklist-items-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    max-height: 200px; /* Altura máxima para evitar modais muito longos */
+    overflow-y: auto; /* Adiciona scroll se muitos itens */
+    padding-right: 5px; /* Espaço para a barra de rolagem não cobrir conteúdo */
+}
+
+.checklist-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    padding: 5px 0;
+    padding-right: 45px !important; /* Espaço à direita para acomodar os botões */
+}
+
+.checklist-item label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: calc(100% - 40px);
+}
+
+/* Posicionamento dos controles de ações do checklist */
+.checklist-item-actions {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35px; /* Largura fixa para o contêiner de ações */
+}
+
+/* Botão de remover item */
+#modalNovaAcao .btn-remover-item-checklist {
+    margin-bottom: 12px; /* Aumentando o espaço entre o botão de excluir e as setas */
+    position: relative;
+    z-index: 3; /* Garantir que fique acima */
+    color: #dc3545;
+}
+
+#modalNovaAcao .btn-remover-item-checklist:hover {
+    color: #b02a37; /* Vermelho mais escuro ao passar o mouse */
+}
+
+/* Contêiner de setas */
+#modalNovaAcao .setas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    z-index: 2; /* Abaixo do botão de excluir, mas ainda visível */
+}
+
+/* Botões de seta */
+#modalNovaAcao .btn-move-item-up,
+#modalNovaAcao .btn-move-item-down {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+}
+
+#modalNovaAcao .btn-move-item-up:hover,
+#modalNovaAcao .btn-move-item-down:hover {
+    color: #007bff; /* Azul ao passar o mouse */
+}
+
+#modalNovaAcao .btn-move-item-up i,
+#modalNovaAcao .btn-move-item-down i {
+    font-size: 0.85rem;
+}
+
+#modalNovaAcao .checklist-item-checkbox {
+    margin-top: 8px; /* Alinhar melhor com o input de texto que é mais alto */
+}
+
+#modalNovaAcao .checklist-item-text.form-control {
+    width: 95%; /* Aumentando a largura para melhor visualização */
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-height: 60px; /* Aumentando a altura mínima */
+    max-height: 120px; /* Definindo altura máxima */
+    overflow-y: auto; /* Adicionando barra de rolagem vertical */
+    resize: vertical; /* Permitindo redimensionamento vertical */
+}
+
+/* Estilizando a barra de rolagem do campo de texto */
+#modalNovaAcao .checklist-item-text.form-control::-webkit-scrollbar {
+    width: 8px;
+}
+
+#modalNovaAcao .checklist-item-text.form-control::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#modalNovaAcao .checklist-item-text.form-control::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+#modalNovaAcao .checklist-item-text.form-control::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+#adicionarItemChecklistNovaAcaoBtn {
+    display: inline-block; /* Para permitir margin-top */
+    margin-top: 10px;
+    background-color: #edf2f7;
+    color: #4a5568;
+    border: 1px solid #e2e8f0;
+    font-size: 0.85rem;
+    padding: 6px 10px;
+}
+
+#adicionarItemChecklistNovaAcaoBtn:hover {
+    background-color: #e2e8f0;
+    border-color: #cbd5e0;
+}
+
+#adicionarItemChecklistNovaAcaoBtn .fas {
+    margin-right: 4px;
+}
+
+/* Estilos para o modal de visualização de ação */
+#modalVerAcao .modal-content {
+    max-width: 700px; /* Um pouco maior para acomodar bem os detalhes */
+    border-radius: 10px; /* Bordas um pouco mais arredondadas */
+}
+
+/* Melhorar o espaçamento e aparência do corpo do modal de visualização */
+#modalVerAcao .modal-body {
+    padding: 20px 30px; /* Mais padding horizontal */
+}
+
+#modalVerAcao .form-group {
+    margin-bottom: 18px; /* Aumentar um pouco o espaçamento entre os grupos */
+}
+
+#modalVerAcao .form-group label {
+    font-weight: 600;
+    color: #4a5568; /* Um cinza um pouco mais escuro e moderno para labels */
+    font-size: 0.8rem; /* Um pouco menor para dar destaque ao conteúdo */
+    text-transform: uppercase; /* Caixa alta para os labels */
+    margin-bottom: 6px; /* Espaço entre label e valor */
+}
+
+#modalVerAcao .form-control-static {
+    padding: 0; /* Remover padding padrão, já que o label tem margin-bottom */
+    margin-bottom: 0;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    word-break: break-word; /* Quebra palavras longas */
+    font-size: 0.95rem; /* Tamanho de fonte para os dados */
+    color: #2d3748; /* Cor mais escura para os dados */
+    line-height: 1.5;
+}
+
+/* Estilo para a descrição, permitindo múltiplas linhas e scroll se necessário */
+#verAcaoDescricao {
+    white-space: pre-wrap; /* Preserva quebras de linha e espaços */
+    max-height: 150px; /* Limita a altura da descrição */
+    overflow-y: auto;   /* Adiciona scroll se o conteúdo exceder */
+    background-color: #f7fafc; /* Um fundo muito sutil para destacar a área */
+    padding: 8px 10px;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+}
+
+#verAcaoChecklistTitulo {
+    margin-top: 25px; /* Mais espaçamento antes do título do checklist */
+    margin-bottom: 15px; /* Espaçamento depois do título */
+    font-size: 1.25rem; /* Título do checklist um pouco maior */
+    font-weight: 600; /* Mais peso para o título do checklist */
+    color: #2d3748;
+    border-bottom: 2px solid #e2e8f0; /* Linha separadora mais visível */
+    padding-bottom: 10px;
+}
+
+/* Ajustes para os itens do checklist no modo de visualização */
+#checklistItensContainerVerAcao .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 8px 4px; /* Mais padding vertical para cada item */
+    border-bottom: 1px dashed #edf2f7; /* Linha pontilhada sutil entre itens */
+    transition: background-color 0.2s ease-in-out;
+    position: relative;
+    width: 100%;
+}
+
+#checklistItensContainerVerAcao .checklist-item:last-child {
+    border-bottom: none;
+}
+
+#checklistItensContainerVerAcao .checklist-item:hover {
+    background-color: #f7fafc; /* Fundo sutil ao passar o mouse */
+}
+
+#checklistItensContainerVerAcao .checklist-item-checkbox {
+    margin-top: 8px; /* Alinhamento vertical fino com o texto */
+}
+
+#checklistItensContainerVerAcao .checklist-item label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+}
+
+#checklistItensContainerVerAcao .checklist-item-text {
+    width: 95%;
+    padding: 8px 12px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-height: 20px;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    margin-bottom: 5px;
+}
+
+#checklistItensContainerVerAcao .checklist-item-text::-webkit-scrollbar {
+    width: 8px;
+}
+
+#checklistItensContainerVerAcao .checklist-item-text::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#checklistItensContainerVerAcao .checklist-item-text::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+#checklistItensContainerVerAcao .checklist-item-text::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+#modalVerAcao .modal-footer {
+    padding: 15px 30px; /* Alinhar padding com o corpo */
+    border-top: 1px solid #e2e8f0;
+}
+
+/* Ajustes para responsividade do checklist, se necessário */
+@media (max-width: 768px) {
+    /* Ajustes para telas menores se o layout quebrar */
+}
+
+/* Botão de visualizar ação na tabela */
+.btn-view-action {
+    color: #17a2b8; /* Cor azul-petróleo/ciano para diferenciar */
+}
+
+.btn-view-action:hover {
+    color: #117a8b;
+}
+
+/* Estilos específicos para o checklist no modal de NOVA AÇÃO */
+#modalNovaAcao .checklist-items-container {
+    background-color: #f9fafb; /* Fundo levemente diferente para a área de itens */
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    margin-top: 8px; /* Espaço após o label "Itens do Checklist" */
+}
+
+#modalNovaAcao .checklist-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    padding: 8px 0;
+    padding-right: 50px !important; /* Aumentando o espaço à direita para melhor acomodar os botões */
+    border-bottom: 1px dashed #eee;
+}
+
+#modalNovaAcao .checklist-item:last-child {
+    border-bottom: none;
+}
+
+#modalNovaAcao .checklist-item label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: calc(100% - 50px);
+}
+
+/* Posicionamento dos controles de ações do checklist */
+#modalNovaAcao .checklist-item-actions {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35px; /* Largura fixa para o contêiner de ações */
+    height: auto;
+}
+
+/* Botão de remover item */
+#modalNovaAcao .btn-remover-item-checklist {
+    margin-bottom: 16px; /* Aumentando o espaço entre o botão de excluir e as setas */
+    color: #dc3545;
+    transition: color 0.2s;
+}
+
+#modalNovaAcao .btn-remover-item-checklist:hover {
+    color: #b02a37; /* Vermelho mais escuro ao passar o mouse */
+}
+
+/* Contêiner de setas */
+#modalNovaAcao .setas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Botões de seta */
+#modalNovaAcao .btn-move-item-up,
+#modalNovaAcao .btn-move-item-down {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+}
+
+#modalNovaAcao .btn-move-item-up:hover,
+#modalNovaAcao .btn-move-item-down:hover {
+    color: #007bff; /* Azul ao passar o mouse */
+}
+
+/* Centralizar e evitar quebra de linha no status da tabela de ações */
+td .status-tag {
+    display: inline-block;
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0 auto;
+}
+td:nth-child(4) {
+    text-align: center;
+}
+
+/* Alinhar horizontalmente os botões de ação na tabela de ações */
+td .acoes-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+#responsaveisChecklistContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px 32px;
+    margin-bottom: 10px;
+    /* Limite de 4 por linha */
+}
+
+.responsavel-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 180px;
+    margin-bottom: 0;
+    flex: 1 1 22%; /* Aproximadamente 4 por linha (100/4 = 25, um pouco menor para gap) */
+    max-width: 25%;
+    box-sizing: border-box;
+}
+
+.responsavel-checkbox {
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .all-actions, .eixos-section {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+.dashboard-content-padded {
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+@media (max-width: 900px) {
+    .dashboard-content-padded {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+#modalNovaAcao .checklist-item-checkbox {
+    margin-top: 8px; /* Alinhar melhor com o input de texto que é mais alto */
+}
+
+#modalNovaAcao .btn-remover-item-checklist:hover {
+    color: #dc3545; /* Vermelho ao passar o mouse */
+}
+
+.checklist-item-actions {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35px; /* Largura fixa para o contêiner de ações */
+}
+
+/* Botão de remover item */
+#modalNovaAcao .btn-remover-item-checklist {
+    margin-bottom: 12px; /* Aumentando o espaço entre o botão de excluir e as setas */
+    position: relative;
+    z-index: 3; /* Garantir que fique acima */
+}
+
+/* Contêiner de setas */
+#modalNovaAcao .setas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    z-index: 2; /* Abaixo do botão de excluir, mas ainda visível */
+}
+
+/* Botões de seta */
+#modalNovaAcao .btn-move-item-up,
+#modalNovaAcao .btn-move-item-down {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+}
+
+#modalNovaAcao .btn-move-item-up:hover,
+#modalNovaAcao .btn-move-item-down:hover {
+    color: #007bff; /* Azul ao passar o mouse */
+}
+
+#modalNovaAcao .btn-move-item-up i,
+#modalNovaAcao .btn-move-item-down i {
+    font-size: 0.85rem;
+}
+
+#modalNovaAcao .checklist-item-checkbox {
+    margin-top: 8px; /* Alinhar melhor com o input de texto que é mais alto */
+}
+
+#modalNovaAcao .checklist-item-text.form-control {
+    width: 95%; /* Aumentando a largura para melhor visualização */
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-height: 60px; /* Aumentando a altura mínima */
+    max-height: 120px; /* Definindo altura máxima */
+    overflow-y: auto; /* Adicionando barra de rolagem vertical */
+    resize: vertical; /* Permitindo redimensionamento vertical */
+}
+
+/* Estilizando a barra de rolagem do campo de texto */
+#modalNovaAcao .checklist-item-text.form-control::-webkit-scrollbar {
+    width: 8px;
+}
+
+#modalNovaAcao .checklist-item-text.form-control::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#modalNovaAcao .checklist-item-text.form-control::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+#modalNovaAcao .checklist-item-text.form-control::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+} 

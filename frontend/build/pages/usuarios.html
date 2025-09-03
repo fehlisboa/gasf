@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESTÃO DE USUARIOS</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'><path fill='%2300008B' d='M144 160A80 80 0 1 0 144 0a80 80 0 1 0 0 160zm368 0A80 80 0 1 0 512 0a80 80 0 1 0 0 160zM0 298.7C0 310.4 9.6 320 21.3 320l213.3 0c.2 0 .4 0 .7 0c-26.6-23.5-43.3-57.8-43.3-96c0-7.6 .7-15 1.9-22.3c-13.6-6.3-28.7-9.7-44.6-9.7l-42.7 0C47.8 192 0 239.8 0 298.7zM320 320c24 0 45.9-8.8 62.7-23.3c2.5-3.7 5.2-7.3 8-10.7c2.7-3.3 5.7-6.1 9-8.3C410 262.3 416 243.9 416 224c0-53-43-96-96-96s-96 43-96 96s43 96 96 96zm65.4 60.2c-10.3-5.9-18.1-16.2-20.8-28.2l-103.2 0C187.7 352 128 411.7 128 485.3c0 14.7 11.9 26.7 26.7 26.7l300.6 0c-2.1-5.2-3.2-10.9-3.2-16.4l0-3c-1.3-.7-2.7-1.5-4-2.3l-2.6 1.5c-16.8 9.7-40.5 8-54.7-9.7c-4.5-5.6-8.6-11.5-12.4-17.6l-.1-.2-.1-.2-2.4-4.1-.1-.2-.1-.2c-3.4-6.2-6.4-12.6-9-19.3c-8.2-21.2 2.2-42.6 19-52.3l2.7-1.5c0-.8 0-1.5 0-2.3s0-1.5 0-2.3l-2.7-1.5zM533.3 192l-42.7 0c-15.9 0-31 3.5-44.6 9.7c1.3 7.2 1.9 14.7 1.9 22.3c0 17.4-3.5 33.9-9.7 49c2.5 .9 4.9 2 7.1 3.3l2.6 1.5c1.3-.8 2.6-1.6 4-2.3l0-3c0-19.4 13.3-39.1 35.8-42.6c7.9-1.2 16-1.9 24.2-1.9s16.3 .6 24.2 1.9c22.5 3.5 35.8 23.2 35.8 42.6l0 3c1.3 .7 2.7 1.5 4 2.3l2.6-1.5c16.8-9.7 40.5-8 54.7 9.7c2.3 2.8 4.5 5.8 6.6 8.7c-2.1-57.1-49-102.7-106.6-102.7zm91.3 163.9c6.3-3.6 9.5-11.1 6.8-18c-2.1-5.5-4.6-10.8-7.4-15.9l-2.3-4c-3.1-5.1-6.5-9.9-10.2-14.5c-4.6-5.7-12.7-6.7-19-3l-2.9 1.7c-9.2 5.3-20.4 4-29.6-1.3s-16.1-14.5-16.1-25.1l0-3.4c0-7.3-4.9-13.8-12.1-14.9c-6.5-1-13.1-1.5-19.9-1.5s-13.4 .5-19.9 1.5c-7.2 1.1-12.1 7.6-12.1 14.9l0 3.4c0 10.6-6.9 19.8-16.1 25.1s-20.4 6.6-29.6 1.3l-2.9-1.7c-6.3-3.6-14.4-2.6-19 3c-3.7 4.6-7.1 9.5-10.2 14.6l-2.3 3.9c-2.8 5.1-5.3 10.4-7.4 15.9c-2.6 6.8 .5 14.3 6.8 17.9l2.9 1.7c9.2 5.3 13.7 15.8 13.7 26.4s-4.5 21.1-13.7 26.4l-3 1.7c-6.3 3.6-9.5 11.1-6.8 17.9c2.1 5.5 4.6 10.7 7.4 15.8l2.4 4.1c3 5.1 6.4 9.9 10.1 14.5c4.6 5.7 12.7 6.7 19 3l2.9-1.7c9.2-5.3 20.4-4 29.6 1.3s16.1 14.5 16.1 25.1l0 3.4c0 7.3 4.9 13.8 12.1 14.9c6.5 1 13.1 1.5 19.9 1.5s13.4-.5 19.9-1.5c7.2-1.1 12.1-7.6 12.1-14.9l0-3.4c0-10.6 6.9-19.8 16.1-25.1s20.4-6.6 29.6-1.3l2.9 1.7c6.3 3.6 14.4 2.6 19-3c3.7-4.6 7.1-9.4 10.1-14.5l2.4-4.2c2.8-5.1 5.3-10.3 7.4-15.8c2.6-6.8-.5-14.3-6.8-17.9l-3-1.7c-9.2-5.3-13.7-15.8-13.7-26.4s4.5-21.1 13.7-26.4l3-1.7zM472 384a40 40 0 1 1 80 0 40 40 0 1 1 -80 0z'/></svg>">
+    <link rel="stylesheet" href="/styles/sidebar.css">
+    <link rel="stylesheet" href="/styles/usuarios.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap">
+    <link rel="stylesheet" href="/styles/topbargesfam.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside id="mainSidebar" class="sidebar"></aside>
+        <div class="dashboard-main">
+            <div id="mainTopbarContainer"></div>
+            <main class="dashboard-content">
+                <div class="welcome-message">
+                    <h2>Gestão de Usuários</h2>
+                    <p>Gerencie perfis, cadastre e visualize usuários do sistema.</p>
+                </div>
+                <div class="dashboard-cards" id="userActionCards">
+                    <div class="stats-card clickable" data-section="perfil">
+                        <div class="stats-icon">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <div class="stats-info">
+                            <h3>Editar Perfil</h3>
+                            <span class="stats-value">Suas informações</span>
+                        </div>
+                    </div>
+                    <div class="stats-card clickable" data-section="adicionar">
+                        <div class="stats-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="stats-info">
+                            <h3>Adicionar Usuário</h3>
+                            <span class="stats-value">Novo cadastro</span>
+                        </div>
+                    </div>
+                    <div class="stats-card clickable" data-section="lista">
+                        <div class="stats-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stats-info">
+                            <h3>Lista de Usuários</h3>
+                            <span class="stats-value">Gerenciar usuários</span>
+                        </div>
+                    </div>
+                </div>
+                <section class="config-section user-section" id="section-lista">
+                    <h3><i class="fas fa-users"></i> Lista de Usuários</h3>
+                    <div class="table-container">
+                        <table class="user-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>E-mail</th>
+                                    <th>Cargo</th>
+                                    <th>ID</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userList">
+                                <!-- Usuários serão listados aqui via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- Nova seção para gerenciamento de cargos -->
+                <section class="config-section user-section" id="section-cargos">
+                    <h3><i class="fas fa-briefcase"></i> Lista de Cargos</h3>
+                    <div class="section-header">
+                        <p>Gerencie os cargos disponíveis no sistema.</p>
+                        <button class="btn-primary" id="novoCargoBotao">
+                            <i class="fas fa-plus"></i> Novo Cargo
+                        </button>
+                    </div>
+                    <div class="table-container">
+                        <table class="user-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome do Cargo</th>
+                                    <th>Descrição</th>
+                                    <th>Total de Usuários</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cargosList">
+                                <!-- Cargos serão listados aqui via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="../utils/sidebar-loader.js"></script>
+    <script src="/utils/topbargesfam.js"></script>
+    <script src="../utils/usuarios.js"></script>
+    <script>
+        // Evento principal quando DOM é carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("DOM carregado, configurando eventos...");
+            
+            // Configurar botões de toggle de senha
+            setupPasswordToggles();
+            
+            // Configurar upload de fotos para os modais
+            setupPhotoUpload('modalNovoPhotoBtn', 'modalNovoPhotoInput', 'modalNovoPhotoPreview');
+            setupPhotoUpload('modalEditPhotoBtn', 'modalEditPhotoInput', 'modalEditPhotoPreview');
+            setupPhotoUpload('modalProfilePhotoBtn', 'modalProfilePhotoInput', 'modalProfilePhotoPreview');
+            
+            // Configurar funcionalidade de fechar modais
+            setupModalClosers();
+            
+            // Configurar cards clicáveis
+            setupActionCards();
+        });
+        
+        // Função para configurar uploads de foto
+        function setupPhotoUpload(buttonId, inputId, previewId) {
+            const originalUploadButton = document.getElementById(buttonId);
+            const originalFileInput = document.getElementById(inputId);
+            const photoPreview = document.getElementById(previewId);
+            
+            if (originalUploadButton && originalFileInput && photoPreview) {
+                // 1. Clonar e substituir o input de arquivo PRIMEIRO
+                // Isso garante que temos a referência correta ao novo input
+                // ao configurar o listener do botão.
+                const newFileInput = originalFileInput.cloneNode(true);
+                originalFileInput.parentNode.replaceChild(newFileInput, originalFileInput);
+                
+                // 2. Clonar e substituir o botão de upload
+                const newUploadButton = originalUploadButton.cloneNode(true);
+                originalUploadButton.parentNode.replaceChild(newUploadButton, originalUploadButton);
+                
+                // 3. Adicionar listener ao NOVO botão para clicar no NOVO input de arquivo
+                newUploadButton.addEventListener('click', function() {
+                    newFileInput.click(); // Corrigido: clica no novo input de arquivo
+                });
+                
+                // 4. Adicionar listener de 'change' ao NOVO input de arquivo
+                newFileInput.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        const reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                            // Limpar preview existente
+                            while (photoPreview.firstChild) {
+                                photoPreview.removeChild(photoPreview.firstChild);
+                            }
+                            
+                            // Adicionar nova imagem ao preview
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            photoPreview.appendChild(img);
+                        }
+                        
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+            }
+        }
+        
+        // Configurar funcionalidade de fechar modais
+        function setupModalClosers() {
+            const closeButtons = document.querySelectorAll('.close-modal, .btn-cancel');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modalId = this.getAttribute('data-modal');
+                    if (modalId) {
+                        closeModal(modalId);
+                    }
+                });
+            });
+        }
+        
+        // Configurar cards clicáveis
+        function setupActionCards() {
+            const cards = document.querySelectorAll('.stats-card.clickable');
+            
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const section = card.dataset.section;
+                    
+                    if (section === 'perfil') {
+                        // Abrir modal de edição de perfil
+                        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                        if (currentUser) {
+                            document.getElementById('modalProfileNome').value = currentUser.name || '';
+                            document.getElementById('modalProfileEmail').value = currentUser.email || '';
+                            document.getElementById('modalProfileCargo').value = currentUser.cargo || '';
+                            document.getElementById('modalProfileSenha').value = '';
+                            
+                            // Carregar foto do perfil
+                            const photoPreview = document.getElementById('modalProfilePhotoPreview');
+                            if (photoPreview) {
+                                while (photoPreview.firstChild) {
+                                    photoPreview.removeChild(photoPreview.firstChild);
+                                }
+                                
+                                if (currentUser.photo) {
+                                    const img = document.createElement('img');
+                                    img.src = currentUser.photo;
+                                    photoPreview.appendChild(img);
+                                } else {
+                                    const icon = document.createElement('i');
+                                    icon.className = 'fas fa-user';
+                                    photoPreview.appendChild(icon);
+                                }
+                            }
+                            
+                            openModal('editProfileModal');
+                        }
+                    } else if (section === 'adicionar') {
+                        // Abrir modal de adicionar usuário
+                        const form = document.getElementById('addUserModalForm');
+                        if (form) form.reset();
+                        
+                        const photoPreview = document.getElementById('modalNovoPhotoPreview');
+                        if (photoPreview) {
+                            while (photoPreview.firstChild) {
+                                photoPreview.removeChild(photoPreview.firstChild);
+                            }
+                            const icon = document.createElement('i');
+                            icon.className = 'fas fa-user';
+                            photoPreview.appendChild(icon);
+                        }
+                        
+                        openModal('addUserModal');
+                    } else if (section === 'lista') {
+                        // Já estamos na lista, apenas recarregar
+                        carregarUsuarios();
+                    }
+                });
+            });
+        }
+    </script>
+    
+    <!-- Modal para Adicionar Novo Usuário -->
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-plus"></i> Adicionar Novo Usuário</h3>
+                <span class="close-modal" data-modal="addUserModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addUserModalForm" autocomplete="off">
+                    <div class="photo-upload-container">
+                        <div class="photo-preview" id="modalNovoPhotoPreview">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <input type="file" id="modalNovoPhotoInput" class="photo-upload-input" accept="image/*" aria-label="Selecionar foto do usuário" title="Selecionar imagem para o perfil">
+                        <button type="button" class="photo-upload-btn" id="modalNovoPhotoBtn">
+                            <i class="fas fa-camera"></i> Adicionar Foto
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalNovoNome">Nome de Usuário</label>
+                        <input type="text" id="modalNovoNome" name="modalNovoNome" required placeholder="Digite o nome do usuário" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="modalNovoEmail">E-mail</label>
+                        <input type="email" id="modalNovoEmail" name="modalNovoEmail" required placeholder="Digite o e-mail" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="modalNovoCargo">Cargo</label>
+                        <select id="modalNovoCargo" name="modalNovoCargo" required>
+                            <option value="">Selecione o cargo</option>
+                            <!-- Opções de cargos serão preenchidas dinamicamente via JS -->
+                        </select>
+                    </div>
+                    <input type="hidden" id="modalNovoRole" name="modalNovoRole" value="admin">
+                    <div class="form-group">
+                        <label for="modalNovaSenha">Senha</label>
+                        <div class="password-input-container">
+                            <input type="password" id="modalNovaSenha" name="modalNovaSenha" required placeholder="Digite a senha" autocomplete="new-password">
+                            <button type="button" class="toggle-password" id="toggleModalNovaSenha" title="Mostrar/ocultar senha" aria-label="Alternar visibilidade da senha">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <small class="password-hint">A senha deve conter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais</small>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" data-modal="addUserModal">Cancelar</button>
+                        <button type="submit" class="config-save-btn"><i class="fas fa-user-plus"></i> Adicionar Usuário</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Editar Usuário -->
+    <div id="editUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-edit"></i> Editar Usuário</h3>
+                <span class="close-modal" data-modal="editUserModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="editUserModalForm">
+                    <input type="hidden" id="editUserId" name="editUserId">
+                    <div class="photo-upload-container">
+                        <div class="photo-preview" id="modalEditPhotoPreview">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <input type="file" id="modalEditPhotoInput" class="photo-upload-input" accept="image/*" aria-label="Selecionar foto do usuário" title="Selecionar imagem para o perfil">
+                        <button type="button" class="photo-upload-btn" id="modalEditPhotoBtn">
+                            <i class="fas fa-camera"></i> Alterar Foto
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalEditNome">Nome</label>
+                        <input type="text" id="modalEditNome" name="modalEditNome" required placeholder="Nome do usuário">
+                    </div>
+                    <div class="form-group">
+                        <label for="modalEditEmail">E-mail</label>
+                        <input type="email" id="modalEditEmail" name="modalEditEmail" required placeholder="E-mail do usuário">
+                    </div>
+                    <div class="form-group">
+                        <label for="modalEditCargo">Cargo</label>
+                        <select id="modalEditCargo" name="modalEditCargo" required>
+                            <option value="">Selecione o cargo</option>
+                            <!-- Opções de cargos serão preenchidas dinamicamente via JS -->
+                        </select>
+                    </div>
+                    <input type="hidden" id="modalEditRole" name="modalEditRole" value="admin">
+                    <div class="form-group">
+                        <label for="modalEditStatus">Status</label>
+                        <select id="modalEditStatus" name="modalEditStatus" required>
+                            <option value="ativo">Ativo</option>
+                            <option value="inativo">Inativo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalEditSenha">Nova Senha</label>
+                        <div class="password-input-container">
+                            <input type="password" id="modalEditSenha" name="modalEditSenha" placeholder="Nova senha (opcional)">
+                            <button type="button" class="toggle-password" id="toggleModalEditSenha" title="Mostrar/ocultar senha" aria-label="Alternar visibilidade da senha">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <small class="password-hint">A senha deve conter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais</small>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" data-modal="editUserModal">Cancelar</button>
+                        <button type="submit" class="config-save-btn"><i class="fas fa-save"></i> Salvar Alterações</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Editar Perfil Próprio -->
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-cog"></i> Editar Meu Perfil</h3>
+                <span class="close-modal" data-modal="editProfileModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="editProfileModalForm">
+                    <div class="photo-upload-container">
+                        <div class="photo-preview" id="modalProfilePhotoPreview">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <input type="file" id="modalProfilePhotoInput" class="photo-upload-input" accept="image/*" aria-label="Selecionar foto do seu perfil" title="Selecionar imagem para o seu perfil">
+                        <button type="button" class="photo-upload-btn" id="modalProfilePhotoBtn">
+                            <i class="fas fa-camera"></i> Alterar Foto
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalProfileNome">Nome</label>
+                        <input type="text" id="modalProfileNome" name="modalProfileNome" required placeholder="Seu nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="modalProfileEmail">E-mail</label>
+                        <input type="email" id="modalProfileEmail" name="modalProfileEmail" required placeholder="Seu e-mail" readonly>
+                        <small class="email-note">O e-mail não pode ser alterado no seu próprio perfil</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalProfileCargo">Cargo</label>
+                        <input type="text" id="modalProfileCargo" name="modalProfileCargo" readonly>
+                        <small class="cargo-note">O cargo só pode ser alterado por um administrador</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalProfileSenha">Nova Senha</label>
+                        <div class="password-input-container">
+                            <input type="password" id="modalProfileSenha" name="modalProfileSenha" placeholder="Nova senha (opcional)">
+                            <button type="button" class="toggle-password" id="toggleModalProfileSenha" title="Mostrar/ocultar senha" aria-label="Alternar visibilidade da senha">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <small class="password-hint">A senha deve conter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais</small>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" data-modal="editProfileModal">Cancelar</button>
+                        <button type="submit" class="config-save-btn"><i class="fas fa-save"></i> Salvar Perfil</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Adicionar/Editar Cargo -->
+    <div id="cargoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="cargoModalTitle"><i class="fas fa-briefcase"></i> Adicionar Cargo</h3>
+                <span class="close-modal" data-modal="cargoModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="cargoModalForm">
+                    <input type="hidden" id="cargoEditId" name="cargoEditId">
+                    <div class="form-group">
+                        <label for="cargoNome">Nome do Cargo</label>
+                        <input type="text" id="cargoNome" name="cargoNome" required placeholder="Digite o nome do cargo">
+                    </div>
+                    <div class="form-group">
+                        <label for="cargoDescricao">Descrição</label>
+                        <textarea id="cargoDescricao" name="cargoDescricao" placeholder="Digite uma descrição para o cargo"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" data-modal="cargoModal">Cancelar</button>
+                        <button type="submit" class="config-save-btn"><i class="fas fa-save"></i> Salvar Cargo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

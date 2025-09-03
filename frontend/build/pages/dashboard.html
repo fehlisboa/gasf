@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DASHBOARD</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2300008B' d='M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm320 96c0-26.9-16.5-49.9-40-59.3L280 88c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 204.7c-23.5 9.5-40 32.5-40 59.3c0 35.3 28.7 64 64 64s64-28.7 64-64zM144 176a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm-16 80a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm288 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM400 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z'/></svg>">
+    <link rel="stylesheet" href="/styles/sidebar.css">
+    <link rel="stylesheet" href="/styles/topbargesfam.css">
+    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/kanban.css">
+    <link rel="stylesheet" href="/styles/graficos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <style>
+        /* Barra de rolagem para o modal de Nova Ação */
+        #modalNovaAcao .modal-content {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside id="mainSidebar" class="sidebar"></aside>
+        <div class="dashboard-main">
+            <div id="mainTopbarContainer"></div>
+            
+            <!-- Nova Seção de Gráficos -->
+            <section class="dashboard-graficos">
+                <div class="graficos-header">
+                    <h2>Métricas e Análises</h2>
+                </div>
+                <div class="graficos-container">
+                    <div class="grafico-card grafico-card-atrasadas grafico-card-atrasadas-destaque">
+                        <!-- <h3>Ações Atrasadas</h3> -->
+                        <div class="atrasadas-contador">
+                            <span id="contador-atrasadas">0</span>
+                            <span class="contador-label">Ações atrasadas</span>
+                        </div>
+                        <div class="atrasadas-lista-container">
+                            <ul id="lista-acoes-atrasadas" class="atrasadas-lista">
+                                <!-- Lista de ações atrasadas será preenchida dinamicamente -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="grafico-card">
+                        <h3>Progresso das Ações</h3>
+                        <div class="grafico-wrapper">
+                            <canvas id="graficoAcoes"></canvas>
+                        </div>
+                    </div>
+                    <div class="grafico-card">
+                        <h3>Distribuição por Prioridade</h3>
+                        <div class="grafico-wrapper">
+                            <canvas id="graficoPrioridades"></canvas>
+                        </div>
+                    </div>
+                    <div class="grafico-card">
+                        <h3>Ações por Usuário</h3>
+                        <div class="grafico-wrapper">
+                            <canvas id="graficoUsuarios"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="graficos-container linha-larga">
+                    <div class="grafico-card grafico-card-centralizado grafico-card-largo">
+                        <h3>Ações por Eixo</h3>
+                        <div class="grafico-wrapper">
+                            <canvas id="graficoEixos"></canvas>
+                        </div>
+                    </div>
+                    <div class="grafico-card grafico-card-centralizado grafico-card-largo">
+                        <h3>Desempenho Mensal</h3>
+                        <div class="grafico-wrapper">
+                            <canvas id="graficoMensal"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <main class="dashboard-content">
+                <!-- A área de conteúdo foi removida, mantendo apenas a estrutura básica -->
+                <h1 class="kanban-page-title">Kanban Board</h1>
+
+                <!-- Seção 1: Resumo/Dashboard dos Cards -->
+                <section class="kanban-summary">
+                    <div class="summary-card">
+                        <h3>A FAZER</h3>
+                        <p id="count-todo">0</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>EM ANDAMENTO</h3>
+                        <p id="count-inprogress">0</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>CONCLUÍDO</h3>
+                        <p id="count-done">0</p>
+                    </div>
+                </section>
+
+                <!-- Seção 2: Todas as Ações -->
+                <div class="dashboard-content-padded">
+                    <section class="all-actions">
+                        <div class="actions-header">
+                            <h2>Todas as Ações</h2>
+                            <button id="novaAcaoBtn" class="btn-primary"><i class="fas fa-plus"></i> Nova Ação</button>
+                        </div>
+                        <div class="actions-filters">
+                            <label for="filter-status" class="sr-only">Status</label>
+                            <select id="filter-status" aria-label="Filtrar por status">
+                                <option value="todos">Todos os Status</option>
+                                <option value="A Fazer">A Fazer</option>
+                                <option value="Em Andamento">Em Andamento</option>
+                                <option value="Concluído">Concluído</option>
+                            </select>
+                            <label for="filter-responsaveis" class="sr-only">Responsável</label>
+                            <select id="filter-responsaveis" aria-label="Filtrar por responsável">
+                                <option value="todos">Todos os Responsáveis</option>
+                                <!-- Options serão populadas dinamicamente -->
+                            </select>
+                            <label for="filter-eixos" class="sr-only">Eixo</label>
+                            <select id="filter-eixos" aria-label="Filtrar por eixo">
+                                <option value="todos">Todos os Eixos</option>
+                                <!-- Options serão populadas dinamicamente -->
+                            </select>
+                            <label for="search-actions" class="sr-only">Pesquisar ações</label>
+                            <input type="text" id="search-actions" placeholder="Pesquisar...">
+                        </div>
+                        <div class="actions-table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Título</th>
+                                        <th>Eixo</th>
+                                        <th>Responsável(is)</th>
+                                        <th>Status</th>
+                                        <th>Prioridade</th>
+                                        <th>Prazo</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="actions-table-body">
+                                    <!-- Linhas da tabela serão populadas dinamicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Seção 3: Kanban Board -->
+                <section class="kanban-board-view">
+                    <div class="kanban-column" id="column-todo">
+                        <div class="column-header">
+                            <h2>A Fazer</h2>
+                        </div>
+                        <div class="kanban-cards-container">
+                            <!-- Cards serão populados aqui -->
+                        </div>
+                    </div>
+                    <div class="kanban-column" id="column-inprogress">
+                        <div class="column-header">
+                            <h2>Em Andamento</h2>
+                        </div>
+                        <div class="kanban-cards-container">
+                            <!-- Cards serão populados aqui -->
+                        </div>
+                    </div>
+                    <div class="kanban-column" id="column-done">
+                        <div class="column-header">
+                            <h2>Concluído</h2>
+                        </div>
+                        <div class="kanban-cards-container">
+                            <!-- Cards serão populados aqui -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Seção 4: Eixos -->
+                <div class="dashboard-content-padded">
+                    <section class="eixos-section card-white">
+                        <div class="section-header">
+                            <h1 class="kanban-page-title">Eixos</h1>
+                            <button id="adicionarEixoBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Eixo</button>
+                        </div>
+                        <div class="list-container" id="eixosListContainer">
+                            <!-- Eixos serão listados aqui por JavaScript -->
+                            <!-- Exemplo de item de eixo (a ser gerado por JS):
+                            <div class="list-item">
+                                <span>Nome do Eixo</span>
+                                <div class="item-actions">
+                                    <button class="btn-icon btn-edit-eixo" data-id="1"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon btn-delete-eixo" data-id="1"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                            -->
+                        </div>
+                    </section>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/utils/cache.js"></script>
+    <script src="../utils/sidebar-loader.js"></script>
+    <script src="/utils/topbargesfam.js"></script>
+    <script src="../js/kanban.js"></script>
+    <script src="../js/graficos.js"></script>
+
+    <!-- Modal para Nova Ação (modificar campo Eixo) -->
+    <div id="modalNovaAcao" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Nova Ação</h2>
+                <button type="button" class="close-btn" id="closeModalNovaAcaoBtn" aria-label="Fechar modal">&times;</button>
+            </div>
+            <form id="formNovaAcao" class="modal-form">
+                <div class="form-group">
+                    <label for="tituloAcaoInput">Título <span class="required">*</span></label>
+                    <input type="text" id="tituloAcaoInput" name="titulo" required>
+                </div>
+                <div class="form-group">
+                    <label for="descricaoAcaoInput">Descrição</label>
+                    <textarea id="descricaoAcaoInput" name="descricao" rows="3"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="statusAcaoSelect">Status <span class="required">*</span></label>
+                        <select id="statusAcaoSelect" name="status" required>
+                            <option value="A Fazer">A Fazer</option>
+                            <option value="Em Andamento">Em Andamento</option>
+                            <option value="Concluído">Concluído</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="prioridadeAcaoSelect">Prioridade</label>
+                        <select id="prioridadeAcaoSelect" name="prioridade">
+                            <option value="Baixa">Baixa</option>
+                            <option value="Média">Média</option>
+                            <option value="Alta">Alta</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span>Responsáveis (marque um ou mais)</span>
+                    <div id="responsaveisChecklistContainer">
+                        <!-- Exemplo de item de responsável (a ser gerado por JS):
+                        <div class="responsavel-item">
+                            <input type="checkbox" id="responsavel-1" name="responsaveis" value="1">
+                            <label for="responsavel-1">Nome do Responsável</label>
+                        </div>
+                        -->
+                        <!-- OBS: No JS, gere ids únicos para cada responsável e associe o label pelo atributo for -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="eixoAcaoSelect">Eixo</label>
+                    <select id="eixoAcaoSelect" name="eixo">
+                        <option value="">Selecione um Eixo</option>
+                        <!-- Opções de eixos serão populadas por JavaScript -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="prazoAcaoInput">Prazo</label>
+                    <input type="date" id="prazoAcaoInput" name="prazo">
+                </div>
+
+                <!-- Seção Checklist -->
+                <div class="form-group">
+                    <label for="checklistTituloInput">Título do Checklist</label>
+                    <input type="text" id="checklistTituloInput" name="checklistTitulo" class="form-control" placeholder="Ex: Tarefas de Implementação">
+                </div>
+                <div class="form-group">
+                    <span>Itens do Checklist</span>
+                    <div id="checklistItensContainerNovaAcao" class="checklist-items-container">
+                        <!-- Itens do checklist serão adicionados aqui por JS -->
+                        <!-- Exemplo de item:
+                        <div class="checklist-item">
+                            <label for="checklist-item-1">
+                                <input type="checkbox" id="checklist-item-1" class="checklist-item-checkbox">
+                                <input type="text" id="checklist-text-1" class="checklist-item-text form-control" placeholder="Descrever item">
+                            </label>
+                            <button type="button" class="btn-icon btn-remover-item-checklist"><i class="fas fa-trash"></i></button>
+                        </div>
+                        -->
+                        <!-- OBS: No JS, gere ids únicos para cada item e associe o label pelo atributo for -->
+                    </div>
+                    <button type="button" id="adicionarItemChecklistNovaAcaoBtn" class="btn btn-sm btn-outline-primary mt-2"><i class="fas fa-plus"></i> Adicionar Item</button>
+                </div>
+                <!-- Fim Seção Checklist -->
+
+                <div class="form-actions">
+                    <button type="button" id="cancelarNovaAcaoBtn" class="btn btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Ação</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Adicionar/Editar Eixo -->
+    <div id="modalAdicionarEditarEixo" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalEixoTitle">Adicionar Eixo</h2>
+                <button type="button" class="close-btn" id="closeModalEixoBtn" aria-label="Fechar modal">&times;</button>
+            </div>
+            <form id="formAdicionarEditarEixo" class="modal-form">
+                <input type="hidden" id="eixoEditIdModalEixo" name="eixoEditId">
+                <div class="form-group">
+                    <label for="nomeEixoInputModalEixo">Nome do Eixo <span class="required">*</span></label>
+                    <input type="text" id="nomeEixoInputModalEixo" name="nomeEixo" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancelarEixoBtn" class="btn btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="salvarEixoBtn">Salvar Eixo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Ver Ação e Checklist -->
+    <div id="modalVerAcao" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="verAcaoModalTitle">Detalhes da Ação</h2>
+                <button type="button" class="close-btn" id="closeModalVerAcaoBtn" aria-label="Fechar modal">&times;</button>
+            </div>
+            <div class="modal-body" id="verAcaoModalBody">
+                <div class="form-group">
+                    <label id="verAcaoTituloLabel">Título:</label>
+                    <p id="verAcaoTitulo" class="form-control-static" aria-labelledby="verAcaoTituloLabel"></p>
+                </div>
+                <div class="form-group">
+                    <label id="verAcaoDescricaoLabel">Descrição:</label>
+                    <p id="verAcaoDescricao" class="form-control-static" aria-labelledby="verAcaoDescricaoLabel"></p>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label id="verAcaoStatusLabel">Status:</label>
+                        <p id="verAcaoStatus" class="form-control-static" aria-labelledby="verAcaoStatusLabel"></p>
+                    </div>
+                    <div class="form-group">
+                        <label id="verAcaoPrioridadeLabel">Prioridade:</label>
+                        <p id="verAcaoPrioridade" class="form-control-static" aria-labelledby="verAcaoPrioridadeLabel"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label id="verAcaoResponsaveisLabel">Responsáveis:</label>
+                    <p id="verAcaoResponsaveis" class="form-control-static" aria-labelledby="verAcaoResponsaveisLabel"></p>
+                </div>
+                <div class="form-group">
+                    <label id="verAcaoEixoLabel">Eixo:</label>
+                    <p id="verAcaoEixo" class="form-control-static" aria-labelledby="verAcaoEixoLabel"></p>
+                </div>
+                <div class="form-group">
+                    <label id="verAcaoPrazoLabel">Prazo:</label>
+                    <p id="verAcaoPrazo" class="form-control-static" aria-labelledby="verAcaoPrazoLabel"></p>
+                </div>
+
+                <!-- Seção Checklist para Visualização -->
+                <div class="form-group">
+                    <h4 id="verAcaoChecklistTitulo">Checklist</h4>
+                    <div id="checklistItensContainerVerAcao" class="checklist-items-container view-only">
+                        <!-- Itens do checklist serão adicionados aqui por JS -->
+                        <!-- Exemplo de item:
+                        <div class="checklist-item">
+                            <input type="checkbox" class="checklist-item-checkbox" data-item-id="1">
+                            <span class="checklist-item-text">Texto do item 1</span>
+                        </div>
+                        -->
+                    </div>
+                </div>
+                <!-- Fim Seção Checklist -->
+            </div>
+            <div class="modal-footer form-actions">
+                <button type="button" id="fecharModalVerAcaoBtn" class="btn btn-secondary">Fechar</button>
+            </div>
+        </div>
+    </div>
+    <!-- Fim Modal para Ver Ação -->
+
+</body>
+</html> 

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métricas</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'><path fill='%2300008B' d='M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-288-128 0c-17.7 0-32-14.3-32-32L224 0 64 0zM256 0l0 128 128 0L256 0zM112 256l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z'/></svg>">
+    <link rel="stylesheet" href="/styles/sidebar.css">
+    <link rel="stylesheet" href="/styles/metricas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/styles/topbargesfam.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside id="mainSidebar" class="sidebar"></aside>
+        <div class="dashboard-main">
+            <div id="mainTopbarContainer"></div>
+            <main class="dashboard-content">
+                <div class="metricas-main-container">
+                    <section class="metricas-section">
+                        <form id="filtroMetricasForm" class="filtro-metricas-form">
+                            <label for="dataInicio">Data início:</label>
+                            <input type="date" id="dataInicio" name="dataInicio" required>
+                            <label for="dataFim">Data fim:</label>
+                            <input type="date" id="dataFim" name="dataFim" required>
+                            <label for="responsavelFiltro" id="labelResponsavelFiltro">Responsável:</label>
+                            <select id="responsavelFiltro" name="responsavelFiltro" class="select-responsavel-metricas">
+                                <option value="">Todos</option>
+                            </select>
+                            <div class="tipo-data-group">
+                                <span>Buscar por:</span>
+                                <label><input type="radio" name="tipoData" value="criacao" checked> Criação</label>
+                                <label><input type="radio" name="tipoData" value="prazo"> Prazo</label>
+                                <label><input type="radio" name="tipoData" value="todas"> Ambas</label>
+                            </div>
+                            <button type="submit" class="btn-filtrar"><i class="fas fa-filter"></i> Filtrar</button>
+                            <button type="button" id="btnExportarPDF" class="btn-exportar-pdf"><i class="fas fa-file-pdf"></i> Exportar PDF</button>
+                        </form>
+                        <div id="metricasConteudo">
+                            <div id="metricasErro" class="erro-metricas" style="display:none;"></div>
+                            <div id="metricasGraficos" class="graficos-metricas">
+                                <div class="grafico-card" id="graficoCardAcoes" style="flex: 1 1 30%; max-width: 30%; min-width: 200px; display: flex; flex-direction: column; align-items: center;">
+                                    <canvas id="graficoMetricasAcoes" style="max-height:180px; width: 100%;"></canvas>
+                                </div>
+                                <div class="grafico-card" id="graficoCardPrioridades" style="flex: 1 1 30%; max-width: 30%; min-width: 200px; display: flex; flex-direction: column; align-items: center;">
+                                    <canvas id="graficoMetricasPrioridades" style="max-height:180px; width: 100%;"></canvas>
+                                </div>
+                                <div class="grafico-card" id="graficoCardEixos" style="flex: 1 1 30%; max-width: 30%; min-width: 200px; display: flex; flex-direction: column; align-items: center;">
+                                    <canvas id="graficoMetricasEixos" style="max-height:180px; width: 100%;"></canvas>
+                                </div>
+                            </div>
+                            <div id="listaAcoesContainer" class="lista-acoes-container" style="margin-top:32px; display:none;">
+                                <table id="tabelaAcoes" class="tabela-acoes">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-bold">Título</th>
+                                            <th class="th-bold">Status</th>
+                                            <th class="th-bold">Prioridade</th>
+                                            <th class="th-bold">Prazo</th>
+                                            <th class="th-bold">Responsáveis</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="../utils/sidebar-loader.js"></script>
+    <script src="/utils/topbargesfam.js"></script>
+    <script src="../js/metricas.js"></script>
+</body>
+</html> 

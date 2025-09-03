@@ -1,0 +1,512 @@
+/* 
+ * user-list.css - Estilos para a lista de usuários (agenda de contatos)
+ * Desenvolvido para SaaS Gestão
+ * Última atualização: Implementação de visual estilo WhatsApp
+ */
+
+/* Importar variáveis CSS compartilhadas */
+@import url('../css/chat.css');
+
+/* Contêiner principal da lista de usuários */
+.users-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cor-fundo-secundario);
+  border-radius: var(--borda-raio-medio);
+  box-shadow: var(--sombra-media);
+  overflow: hidden;
+  border: 1px solid var(--cor-borda);
+  height: 100%;
+  max-height: calc(100vh - 180px);
+}
+
+/* Cabeçalho da lista de usuários */
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--espacamento-normal) var(--espacamento-grande);
+  background: linear-gradient(120deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
+  color: var(--cor-texto-claro);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.users-header h3 {
+  margin: 0;
+  font-size: var(--tamanho-fonte-titulo);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.users-header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.users-header-btn {
+  background: transparent;
+  border: none;
+  border-radius: var(--borda-raio-completo);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cor-texto-claro);
+  cursor: pointer;
+  transition: background-color var(--transicao-rapida);
+}
+
+.users-header-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Barra de pesquisa de usuários */
+.user-search-bar {
+  display: flex;
+  align-items: center;
+  padding: var(--espacamento-medio);
+  background-color: var(--cor-fundo-terciario);
+  position: relative;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.user-search-bar i {
+  color: var(--cor-texto-secundario);
+  margin-right: var(--espacamento-medio);
+  font-size: 16px;
+}
+
+.user-search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: var(--espacamento-pequeno) 0;
+  font-size: var(--tamanho-fonte-normal);
+  color: var(--cor-texto-principal);
+}
+
+.user-search-input::placeholder {
+  color: var(--cor-texto-secundario);
+  opacity: 0.7;
+}
+
+.user-search-clear {
+  background: transparent;
+  border: none;
+  color: var(--cor-texto-secundario);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--borda-raio-completo);
+  transition: background-color var(--transicao-rapida);
+}
+
+.user-search-clear:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--cor-texto-principal);
+}
+
+/* Lista de usuários */
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.user-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.user-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.user-list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.user-list::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Item de usuário */
+.user-item {
+  display: flex;
+  align-items: center;
+  padding: var(--espacamento-normal) var(--espacamento-grande);
+  border-bottom: 1px solid var(--cor-borda);
+  cursor: pointer;
+  transition: all var(--transicao-rapida);
+  position: relative;
+}
+
+.user-item:hover {
+  background-color: rgba(67, 97, 238, 0.05);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.user-item:active {
+  transform: translateY(0);
+  background-color: rgba(67, 97, 238, 0.1);
+}
+
+.user-item:last-child {
+  border-bottom: none;
+}
+
+/* Avatar do usuário */
+.user-avatar {
+  width: var(--tamanho-avatar);
+  height: var(--tamanho-avatar);
+  border-radius: var(--borda-raio-completo);
+  margin-right: var(--espacamento-normal);
+  object-fit: cover;
+  box-shadow: var(--sombra-suave);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  position: relative;
+}
+
+.user-avatar-iniciais {
+  width: var(--tamanho-avatar);
+  height: var(--tamanho-avatar);
+  border-radius: var(--borda-raio-completo);
+  margin-right: var(--espacamento-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, var(--cor-primaria) 0%, var(--cor-primaria-claro) 100%);
+  color: var(--cor-texto-claro);
+  font-weight: bold;
+  font-size: var(--tamanho-fonte-medio);
+  text-transform: uppercase;
+  box-shadow: var(--sombra-suave);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  position: relative;
+}
+
+/* Indicador de status para avatar */
+.user-item .avatar-status {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+  z-index: 2;
+}
+
+.user-item .status-disponivel {
+  background-color: var(--cor-sucesso, #52b788);
+}
+
+.user-item .status-ocupado {
+  background-color: var(--cor-aviso, #fb8500);
+}
+
+.user-item .status-ausente,
+.user-item .status-offline {
+  background-color: var(--cor-texto-secundario, #6c757d);
+}
+
+.user-item .status-reuniao {
+  background-color: var(--cor-alerta, #e63946);
+}
+
+/* Informações do usuário */
+.user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-name {
+  font-weight: 600;
+  color: var(--cor-texto-principal);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-status {
+  display: flex;
+  align-items: center;
+  color: var(--cor-texto-secundario);
+  font-size: var(--tamanho-fonte-pequeno);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+/* Botão de iniciar chat */
+.btn-iniciar-chat {
+  background-color: transparent;
+  color: var(--cor-primaria);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--borda-raio-completo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transicao-rapida);
+  opacity: 0;
+  margin-left: var(--espacamento-pequeno);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-iniciar-chat:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(67, 97, 238, 0.1);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.3s ease;
+}
+
+.user-item:hover .btn-iniciar-chat {
+  opacity: 1;
+}
+
+.btn-iniciar-chat:hover {
+  background-color: var(--cor-primaria);
+  color: white;
+  transform: scale(1.1);
+}
+
+.btn-iniciar-chat:hover:before {
+  transform: scale(1.5);
+  opacity: 0;
+}
+
+.btn-iniciar-chat:active {
+  transform: scale(0.95);
+}
+
+/* Mensagem de lista vazia */
+.empty-user-list {
+  padding: var(--espacamento-grande);
+  text-align: center;
+  color: var(--cor-texto-secundario);
+  font-style: italic;
+  list-style-type: none;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: var(--borda-raio-medio);
+  margin: var(--espacamento-grande);
+}
+
+/* Rodapé da lista (opcional) */
+.users-footer {
+  padding: var(--espacamento-medio);
+  border-top: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo-terciario);
+  text-align: center;
+  font-size: var(--tamanho-fonte-pequeno);
+  color: var(--cor-texto-secundario);
+}
+
+/* Alternar visualização entre chats e usuários */
+.view-toggle {
+  display: flex;
+  background-color: var(--cor-fundo-terciario);
+  padding: var(--espacamento-minimo);
+  border-radius: var(--borda-raio-pequeno);
+  margin-bottom: var(--espacamento-pequeno);
+}
+
+.view-toggle-btn {
+  flex: 1;
+  padding: var(--espacamento-pequeno);
+  text-align: center;
+  background: transparent;
+  border: none;
+  border-radius: var(--borda-raio-pequeno);
+  color: var(--cor-texto-secundario);
+  cursor: pointer;
+  transition: all var(--transicao-rapida);
+}
+
+.view-toggle-btn.active {
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto-claro);
+  font-weight: 500;
+  box-shadow: var(--sombra-suave);
+}
+
+/* Efeito de carregamento da lista */
+.user-list-loading {
+  display: flex;
+  justify-content: center;
+  padding: var(--espacamento-grande);
+}
+
+.user-list-loading:after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  border: 3px solid var(--cor-borda);
+  border-top-color: var(--cor-primaria);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Correções para garantir visibilidade das visualizações */
+#userListView.active {
+  display: flex !important;
+}
+
+#chatListView.active {
+  display: flex !important;
+}
+
+#userListView {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+/* Adaptação para telas menores */
+@media (max-width: 768px) {
+  .users-container {
+    max-height: calc(100vh - 150px);
+  }
+  
+  .user-item {
+    padding: var(--espacamento-medio);
+  }
+  
+  .btn-iniciar-chat {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .users-header {
+    padding: var(--espacamento-medio);
+  }
+  
+  .users-container {
+    max-height: calc(100vh - 120px);
+  }
+}
+
+/* Garantir visibilidade do container de contatos */
+.chat-app-container .user-list-container,
+#userListView,
+.user-list-container.force-visible {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  z-index: 10 !important;
+  position: relative !important;
+}
+
+/* Quando ativo, garantir exibição */
+.user-list-container.active {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ao pressionar botão de contatos, garantir exibição */
+.btn-ver-contatos.active ~ .user-list-container,
+.btn-ver-contatos.active ~ #userListView {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ajuste para estilo mobile */
+@media (max-width: 768px) {
+  .chat-app-container .user-list-container,
+  #userListView,
+  .user-list-container.force-visible {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 100 !important;
+  }
+}
+
+/* CRÍTICO: REGRAS DE VISIBILIDADE FORÇADA */
+#userListView.active,
+#userListView.force-visible {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 10 !important;
+  position: relative !important;
+}
+
+#userListView {
+  height: 100%;
+  position: relative;
+  z-index: 5;
+}
+
+.user-list {
+  display: block !important;
+  position: relative;
+  z-index: 10;
+}
+
+.user-item {
+  transition: none !important;
+  position: relative;
+  z-index: 20;
+}
+
+/* Garantir que o contêiner principal seja visível */
+.users-container {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  overflow: auto !important;
+  position: relative;
+}
+
+/* Mostrar um fundo se nada mais estiver funcionando */
+#btnVerContatos.active ~ #userListView::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: 0;
+} 

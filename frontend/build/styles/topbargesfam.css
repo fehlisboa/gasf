@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700;900&display=swap');
+
+.dashboard-topbar {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    background: #F0FFFF;
+    color: #00008B;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    gap: 0;
+    position: relative;
+    width: calc(100% - 40px);
+    margin: 20px;
+    padding: 20px 0;
+    min-height: 110px;
+}
+
+@keyframes gradientTopbarBG {
+    0% {background-position: 0% 50%;}
+    25% {background-position: 50% 100%;}
+    50% {background-position: 100% 50%;}
+    75% {background-position: 50% 0%;}
+    100% {background-position: 0% 50%;}
+}
+
+.dashboard-clock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 24px 32px 24px 32px;
+    min-width: 160px;
+    background: rgba(255,255,255,0.5);
+    border-right: 1px solid #e0e0e0;
+    box-shadow: none;
+    margin: 0 20px;
+    text-align: left;
+}
+
+.dashboard-clock:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.clock-time {
+    font-family: 'Orbitron', monospace;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #00008B;
+    letter-spacing: 2px;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.clock-time::before {
+    content: attr(data-time);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.clock-time.updating::before {
+    opacity: 1;
+}
+
+.clock-date {
+    font-size: 1rem;
+    color: #00008B;
+    margin-top: 8px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    padding: 4px 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 1100px) {
+    .logo-title {
+        font-size: 1.2rem;
+    }
+    .logo-img-center {
+        max-width: 90px;
+    }
+    .logo-img-vertical {
+        height: 70px;
+        max-height: 80px;
+    }
+    .dashboard-clock {
+        padding: 12px 10px 12px 10px;
+        min-width: 90px;
+        margin: 0 10px;
+    }
+    .logo-side {
+        min-width: 44px;
+        margin: 0 2px;
+    }
+    .logo-center-block {
+        padding: 0 2px;
+    }
+}
+
+@media (max-width: 700px) {
+    .dashboard-topbar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 6px 0;
+        gap: 0;
+    }
+    .dashboard-clock {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        min-width: 0;
+        border-radius: 10px;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 10px 8px 10px 8px;
+        margin: 6px 0;
+    }
+    .logo-container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        min-height: 60px;
+        padding: 0;
+    }
+    .logo-side {
+        min-width: 32px;
+        margin: 0 1px;
+    }
+    .logo-img-vertical {
+        height: 40px;
+        max-height: 40px;
+    }
+    .logo-center-block {
+        padding: 0 1px;
+    }
+    .logo-title {
+        font-size: 0.9rem;
+        margin: 0 0 2px 0;
+    }
+    .logo-img-center {
+        max-width: 60px;
+    }
+}
+
+/* Logo Container */
+.logo-container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.logo-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-width: 110px;
+    margin: 0 8px;
+}
+
+.logo-img-vertical {
+    height: 120px;
+    max-height: 140px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    border-radius: 12px;
+    padding: 4px;
+    margin: 0 8px;
+}
+
+.logo-center-block {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 0 8px;
+}
+
+.logo-title {
+    font-family: 'Bebas Neue', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 1.7rem;
+    color: #00008B;
+    text-align: center;
+    margin: 0 0 4px 0;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.10);
+    white-space: normal;
+    display: block;
+}
+
+.logo-center-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.logo-img-center {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+} 

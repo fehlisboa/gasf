@@ -1,0 +1,333 @@
+/* sidebar.css */
+/* Estilos Gerais */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f7fa;
+}
+
+/* Sidebar Aberto/Fechado */
+.sidebar {
+    width: 60px;
+    background: #F0FFFF;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    color: #00008B;
+}
+
+@keyframes gradientSidebarBG {
+    0% {background-position: 0% 50%;}
+    25% {background-position: 50% 100%;}
+    50% {background-position: 100% 50%;}
+    75% {background-position: 50% 0%;}
+    100% {background-position: 0% 50%;}
+}
+
+.sidebar.open {
+    width: 250px;
+}
+
+/* Header do Sidebar */
+.sidebar-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 10px;
+    box-sizing: border-box;
+    height: 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    background: #F0FFFF;
+}
+
+.sidebar-title-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #F0FFFF;
+    color: #00008B !important;
+}
+
+.sidebar-page-title {
+    display: none;
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #F0FFFF;
+    color: #00008B !important;
+}
+
+.sidebar.open .sidebar-page-title {
+    display: block;
+}
+
+.sidebar-dashboard-title {
+    display: none;
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #F0FFFF;
+    color: #00008B !important;
+}
+
+.sidebar.open .sidebar-dashboard-title {
+    display: block;
+}
+
+.sidebar-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-toggle {
+    background: #F0FFFF !important;
+    color: #00008B !important;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    border-radius: 8px;
+}
+
+.sidebar-toggle:hover {
+    background: #e0f7fa !important;
+    color: #00008B !important;
+}
+
+/* Menu do Sidebar */
+.sidebar-menu {
+    width: 100%;
+    overflow-y: auto;
+    flex: 1;
+    padding: 15px 0;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.sidebar-menu li {
+    width: 100%;
+    margin-bottom: 1px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    color: #00008B;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sidebar-link i {
+    font-size: 16px;
+    min-width: 18px;
+    text-align: center;
+    margin-right: 12px;
+}
+
+.sidebar-text {
+    display: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+}
+
+.sidebar.open .sidebar-text {
+    display: inline;
+}
+
+.sidebar-link:hover, 
+.sidebar-link.active {
+    background-color: rgba(52, 152, 219, 0.15);
+    color: #ffffff;
+    border: 2px solid #fff;
+    border-radius: 5px;
+}
+
+/* Logout Button */
+.sidebar-logout {
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 15px 0;
+    margin-top: auto;
+}
+
+.sidebar-logout .sidebar-link {
+    color: #ff6b6b;
+}
+
+.sidebar-logout .sidebar-link:hover {
+    background-color: rgba(255, 99, 99, 0.15);
+}
+
+/* Logo e Título */
+.sidebar-logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.3s, max-width 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.logo-img {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    flex-shrink: 0;
+}
+
+.logo-text {
+    display: inline-block;
+    transition: opacity 0.3s, width 0.3s;
+    white-space: normal;
+    overflow: hidden;
+    word-break: break-word;
+    max-width: 120px;
+}
+
+.sidebar:not(.open) .sidebar-logo {
+    max-width: 40px;
+}
+
+.sidebar:not(.open) .logo-text {
+    opacity: 0;
+    width: 0;
+    pointer-events: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sidebar.open {
+        width: 200px;
+    }
+    
+    .sidebar:not(.open) {
+        transform: translateX(-100%);
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    /* Ajuste do conteúdo principal em telas menores */
+    .sidebar.open ~ .dashboard-main {
+        margin-left: 200px;
+    }
+    
+    .sidebar:not(.open) ~ .dashboard-main {
+        margin-left: 0;
+    }
+    
+    .sidebar-toggle {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1001;
+        background: rgba(255, 255, 255, 0.1);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+    }
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        width: 100vw;
+        min-width: unset;
+    }
+    
+    .sidebar-logo {
+        max-width: 80vw;
+    }
+    
+    .logo-text {
+        max-width: 60vw;
+    }
+}
+
+/* Modal SweetAlert2 customizado para logout */
+.swal2-logout-modal {
+  border-radius: 18px !important;
+  background: #00008B !important;
+  color: #fff !important;
+  box-shadow: 0 8px 32px 0 rgba(39, 33, 66, 0.25) !important;
+}
+.swal2-confirm-btn {
+  background: #667eea !important;
+  color: #fff !important;
+  border-radius: 24px !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  padding: 8px 32px !important;
+  box-shadow: 0 2px 8px 0 rgba(102, 126, 234, 0.15) !important;
+  border: none !important;
+}
+.swal2-cancel-btn {
+  background: #764ba2 !important;
+  color: #fff !important;
+  border-radius: 24px !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  padding: 8px 24px !important;
+  margin-left: 12px !important;
+  border: none !important;
+}
+.swal2-confirm-btn:focus, .swal2-cancel-btn:focus {
+  outline: 2px solid #fff !important;
+  outline-offset: 2px !important;
+}
+
+.sidebar a,
+.sidebar .sidebar-link,
+.sidebar .sidebar-title,
+.sidebar .sidebar-section,
+.sidebar .sidebar-footer,
+.sidebar .sidebar-header {
+    color: #00008B !important;
+}
+
+.sidebar a.active,
+.sidebar a:active,
+.sidebar a:focus {
+    color: #00008B !important;
+    font-weight: bold;
+}
