@@ -82,19 +82,19 @@ sleep 3
 # Abre o navegador
 echo -e "${GREEN}Abrindo navegador...${NC}"
 if command -v xdg-open &> /dev/null; then
-    xdg-open http://localhost:4000
+    xdg-open https://gasf-backend.onrender.com
 elif command -v open &> /dev/null; then
-    open http://localhost:4000
+    open https://gasf-backend.onrender.com
 else
     echo -e "${YELLOW}Não foi possível abrir o navegador automaticamente. Acesse:${NC}"
-    echo -e "${BLUE}http://localhost:4000${NC}"
+    echo -e "${BLUE}https://gasf-backend.onrender.com${NC}"
 fi
 
 echo ""
 echo -e "${GREEN}Servidores iniciados!${NC}"
-echo -e "- Frontend: ${BLUE}http://localhost:4000${NC}"
-echo -e "- Backend API: ${BLUE}http://localhost:3000/api${NC}"
-echo -e "- Health check: ${BLUE}http://localhost:3000/api/health${NC}"
+echo -e "- Frontend: ${BLUE}https://gasf-backend.onrender.com${NC}"
+echo -e "- Backend API: ${BLUE}https://gasf-backend.onrender.com/api${NC}"
+echo -e "- Health check: ${BLUE}https://gasf-backend.onrender.com/api/health${NC}"
 echo ""
 echo -e "${YELLOW}Pressione Ctrl+C para encerrar os servidores...${NC}"
 

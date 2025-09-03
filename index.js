@@ -25,7 +25,7 @@ app.get('/frontend-health', async (req, res) => {
   try {
     // Determina a URL do backend com base no ambiente
     const apiUrl = req.hostname === 'localhost' 
-      ? 'http://localhost:3000/api/health'
+      ? 'https://gasf-backend.onrender.com/api/health'
       : `${req.protocol}://${req.hostname}/api/health`;
     
     console.log(`Verificando saúde do backend em: ${apiUrl}`);

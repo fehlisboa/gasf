@@ -16,7 +16,7 @@ class ChatManager {
 
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         // Ambiente de Desenvolvimento
-        dynamicApiBaseUrl = config.apiBaseUrl || 'http://localhost:3000/api'; // Adicionado /api para consistência
+        dynamicApiBaseUrl = config.apiBaseUrl || 'https://gasf-backend.onrender.com/api'; // Adicionado /api para consistência
         dynamicWsBaseUrl = config.wsBaseUrl || 'ws://localhost:3000'; // O WebSocketService adicionará /ws se for o default dele, ou usamos abaixo
     } else {
         // Ambiente de Produção (Vercel ou outro)

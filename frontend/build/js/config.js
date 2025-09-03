@@ -4,12 +4,12 @@
 
 const config = {
     development: {
-    apiBaseUrl: 'https://SEU-BACKEND.onrender.com/api',
-    wsBaseUrl: 'ws://localhost:3000'
+    apiBaseUrl: 'https://gasf-backend.onrender.com',
+    wsBaseUrl: 'wss://gasf-backend.onrender.com'
 },
 production: {
-    apiBaseUrl: 'https://SEU-BACKEND.onrender.com/api',
-    wsBaseUrl: 'wss://SEU-BACKEND.onrender.com'
+    apiBaseUrl: 'https://gasf-backend.onrender.com',
+    wsBaseUrl: 'wss://gasf-backend.onrender.com'
 }
 };
 
