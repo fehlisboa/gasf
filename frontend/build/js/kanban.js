@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Endpoints da API
-    const API_BASE_URL = 'https://backend-4ybn.vercel.app';
+    const API_BASE_URL = 'https://gasf-app.onrender.com';
     const ACOES_API_URL = `${API_BASE_URL}/api/kanban/acoes`; 
     const EIXOS_API_URL = `${API_BASE_URL}/api/kanban/eixos`;
 
@@ -2609,7 +2609,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const cacheUsuarios = cache.get(cacheKey);
         if (cacheUsuarios) return cacheUsuarios;
         try {
-            const response = await fetch('https://backend-4ybn.vercel.app/api/usuarios', {
+            const response = await fetch('https://gasf-app.onrender.com/api/usuarios', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (!response.ok) return [];
