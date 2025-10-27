@@ -34,7 +34,7 @@ const CORES_USUARIOS = [
 ];
 
 // Configurações da API
-const API_BASE_URL = 'https://backend-4ybn.vercel.app';
+const API_BASE_URL = 'https://https://gasf-app.onrender.com';
 const ACOES_API_URL = `${API_BASE_URL}/api/kanban/acoes`;
 const EIXOS_API_URL = `${API_BASE_URL}/api/kanban/eixos`;
 const USUARIOS_API_URL = `${API_BASE_URL}/api/usuarios`;
