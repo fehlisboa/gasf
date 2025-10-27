@@ -261,17 +261,22 @@
                             loginButton.disabled = false;
                         }
 
-                        if (!response.ok) {
-                            const errorData = await response.json();
-                            
-                            // Verificar se o erro é devido a usuário desativado
-                            if (errorData.message.toLowerCase().includes('desativ')) {
-                                showNotification('Usuário desativado. Entre em contato com o administrador.', 'error');
-                            } else {
-                                showNotification(errorData.message || 'Erro ao fazer login. Verifique suas credenciais.', 'error');
-                            }
-                            return;
-                        }
+if (!response.ok) {
+    try {
+        const errorData = await response.json();
+        
+        // Verificar se o erro é devido a usuário desativado
+        if (errorData.message && errorData.message.toLowerCase().includes('desativ')) {
+            showNotification('Usuário desativado. Entre em contato com o administrador.', 'error');
+        } else {
+            showNotification(errorData.message || 'Erro ao fazer login. Verifique suas credenciais.', 'error');
+        }
+    } catch (parseError) {
+        // Se não conseguir ler como JSON, mostra erro genérico
+        showNotification('Erro ao fazer login. Tente novamente.', 'error');
+    }
+    return;
+}
 
                         const data = await response.json();
                         console.log('Dados do login:', data);
